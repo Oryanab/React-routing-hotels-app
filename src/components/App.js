@@ -40,6 +40,21 @@ export class App extends Component {
                     />
                   );
                 })}
+                {Hoteldatabase.map((hotel) => {
+                  return (
+                    <Route
+                      key={hotel.שם}
+                      path={`/calling${encodeURIComponent(hotel.שם)}`}
+                      exact
+                      element={
+                        <CallNowButton
+                          hotelJson={hotel}
+                          url={`/${encodeURIComponent(hotel.שם)}`}
+                        />
+                      }
+                    />
+                  );
+                })}
                 <Route exact path="/" element={<HotelGallery />} />
               </Routes>
             </div>
@@ -76,7 +91,9 @@ function Hotelsnip({ hotelJson }) {
       <button>
         <Link to={`/${encodeURIComponent(hotelJson.שם)}`}>Card</Link>
       </button>
-      <button>call</button>
+      <button>
+        <Link to={`/calling${encodeURIComponent(hotelJson.שם)}`}>call</Link>
+      </button>
       <p>{hotelJson.טלפון}</p>
       <br />
       <p>{hotelJson.בית}</p>
@@ -112,7 +129,9 @@ function HotelCard({ hotelJson }) {
       <br />
       <p>{hotelJson.טלפון}</p>
       <br />
-      <button>call</button>
+      <button>
+        <Link to={`/calling${encodeURIComponent(hotelJson.שם)}`}>call</Link>
+      </button>
       <button>
         <Link to={"/"}>Back Home</Link>
       </button>
@@ -140,7 +159,7 @@ function CallNowButton({ hotelJson, url }) {
       <h2>{hotelJson.טלפון}...</h2>
       <br />
       <button>
-        <Link to={`/${encodeURIComponent(url)}`}>End Call</Link>
+        <Link to={"/"}>End Call</Link>
       </button>
       <br />
     </div>
