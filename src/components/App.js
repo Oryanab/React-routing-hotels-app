@@ -1,6 +1,9 @@
 // import './App.css';
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import HotelGallery from "./HotelsGallery";
+import HotelCard from "./HotelCard";
+import CallNowButton from "./CallNowButton";
 
 export class App extends Component {
   constructor(props) {
@@ -66,107 +69,6 @@ export class App extends Component {
       </>
     );
   }
-}
-
-function HotelGallery({ database }) {
-  return database.map((hotel) => {
-    return <Hotelsnip hotelJson={hotel} />;
-  });
-}
-
-function Hotelsnip({ hotelJson }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-evenly",
-        backgroundColor: "white",
-        width: "250px",
-        height: "50px",
-        border: "1px solid black",
-        borderRadius: "1px",
-        padding: "5px",
-        margin: "2px",
-        textAlign: "center",
-        overflow: "hidden",
-      }}
-    >
-      <button>
-        <Link to={`/${encodeURIComponent(hotelJson.שם)}`}>Card</Link>
-      </button>
-      <button>
-        <Link to={`/calling${encodeURIComponent(hotelJson.שם)}`}>call</Link>
-      </button>
-      <p>{hotelJson.טלפון}</p>
-      <br />
-      <p>{hotelJson.בית}</p>
-      <br />
-      <p>{hotelJson.רחוב}</p>
-      <br />
-      <p>{hotelJson.שם}</p>
-      <br />
-    </div>
-  );
-}
-
-function HotelCard({ hotelJson }) {
-  return (
-    <div
-      style={{
-        display: "block",
-        backgroundColor: "white",
-        width: "300px",
-        height: "500px",
-
-        borderRadius: "10px",
-        padding: "2px",
-        margin: "20px",
-        textAlign: "center",
-      }}
-    >
-      <h1>{hotelJson.שם}</h1>
-      <br />
-      <p>{hotelJson.בית}</p>
-      <br />
-      <p>{hotelJson.רחוב}</p>
-      <br />
-      <p>{hotelJson.טלפון}</p>
-      <br />
-      <button>
-        <Link to={`/calling${encodeURIComponent(hotelJson.שם)}`}>call</Link>
-      </button>
-      <button>
-        <Link to={"/"}>Back Home</Link>
-      </button>
-    </div>
-  );
-}
-
-function CallNowButton({ hotelJson, url }) {
-  return (
-    <div
-      style={{
-        display: "block",
-        backgroundColor: "white",
-        width: "300px",
-        height: "500px",
-
-        borderRadius: "10px",
-        padding: "2px",
-        margin: "20px",
-        textAlign: "center",
-      }}
-    >
-      <h1>Calling - {hotelJson.שם}</h1>
-      <br />
-      <h2>{hotelJson.טלפון}...</h2>
-      <br />
-      <button>
-        <Link to={"/"}>End Call</Link>
-      </button>
-      <br />
-    </div>
-  );
 }
 
 const Hoteldatabase = [
