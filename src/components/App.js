@@ -1,7 +1,6 @@
 // import './App.css';
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { kebabCase } from "../helpers/kebabCase";
 
 export class App extends Component {
   constructor(props) {
@@ -12,7 +11,7 @@ export class App extends Component {
       <>
         <Router>
           <div>
-            hello
+            Welcome to Hotel PhoneBook
             <div
               style={{
                 display: "flex",
@@ -55,7 +54,11 @@ export class App extends Component {
                     />
                   );
                 })}
-                <Route exact path="/" element={<HotelGallery />} />
+                <Route
+                  exact
+                  path="/"
+                  element={<HotelGallery database={Hoteldatabase} />}
+                />
               </Routes>
             </div>
           </div>
@@ -65,8 +68,8 @@ export class App extends Component {
   }
 }
 
-function HotelGallery() {
-  return Hoteldatabase.map((hotel) => {
+function HotelGallery({ database }) {
+  return database.map((hotel) => {
     return <Hotelsnip hotelJson={hotel} />;
   });
 }
